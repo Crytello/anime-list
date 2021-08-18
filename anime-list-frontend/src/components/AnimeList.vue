@@ -32,8 +32,11 @@ export default {
     return {
         animes: [],
         anime: {
-          title_jp: '',
-          title_eng: '',
+          title_jp: "",
+          title_eng: "",
+          season: "",
+          release_season: "",
+          release_year: "",
         }
     }
   },
@@ -51,9 +54,11 @@ export default {
     },
     async saveAnime() {
       try {
-          await axios.post("http://localhost:8081/animes", {
-          anime: this.anime
-        })
+          await axios.post("http://localhost:8081/animes", this.anime)
+          .then(function ( response ) {
+            //handle success
+            console.log(response)
+          }.bind(this));
       } catch (err) {
         console.log(err);
       }

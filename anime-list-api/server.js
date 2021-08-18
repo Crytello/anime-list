@@ -17,7 +17,8 @@ const db = require("./app/models");
 db.sequelize.sync();
 
 let corsOptions = { 
-    origin: "http://localhost:8080"
+    origin: "http://localhost:8080",
+    optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
@@ -33,22 +34,45 @@ app.get("/", (req, res) => {
     });
 });
 
-app.post('/item', function (req, res) {
-  anime.create(req.body);
-  res.json(req.body);
-});
+const animeFunctions = require("./app/controllers/anime.controller");
+
+const Anime = db.anime;
 
 app.get("/animes", (req, res) => {
   anime.findAll().then((anime) => {
     res.json(anime);
+	  //res.send(post)
   })
 }); 
 
 app.post("/animes", (req, res) => {
+  const newAnime = new Anime({
+    title_jp: req.body.title_jp,
+    title_eng: req.body.title_eng, 
+    status: req.body.status, 
+    end_date: req.body.end_date, 
+    studio: req.body.studio, 
+    source: req.body.source, 
+    current_episode_downloaded: req.body.current_episode_downloaded, 
+    current_episode_watched: req.body.current_episode_watched, 
+    total_number_episodes: req.body.total_number_episodes, 
+    release_year: req.body.release_year, 
+    rating: req.body.rating,  
+    releaseSeasonId: req.body.releaseSeasonId, 
+    release_season_id: req.body.release_season_id, 
+    groupId: req.body.groupId, 
+    group_id: req.body.group_id
+  })
+  newAnime.save();
+});
+
+ /* app.post("/animes", (req, res) => {
   anime.create().then((anime) => {
     res.json(anime);
   })
-});
+}); */
+ 
+//app.post("/animes", animeFunctions.create);
 
 //listen for request, setting the port
 const PORT = process.env.PORT || 8081;
