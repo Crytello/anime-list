@@ -8,6 +8,9 @@ const express = require("express");
 //cors: cross-origin resource sharing, meaning a protocol that enables scripts running on a browser client to interact with ressources from different origin
 const cors = require("cors");
 
+require('dotenv').config();
+
+
 const app = express();
 
 const db = require("./app/models");
