@@ -25,3 +25,9 @@ pnpm-debug.log*
 #node_modules
 /anime-list-api/node_modules
 /anime-list-frontend/node_modules
+
+#env-files
+/anime-list-api/.env.local
+/anime-list-api/.env.*.local
+/anime-list-frontend/.env.local
+/anime-list-frontend/.env.*.local
