@@ -1,5 +1,8 @@
+require('dotenv').config();
+
 //for building rest apis
 const express = require("express");
+const app = express();
 
 //helps parse the request and create the req.body object
 // not required anymore: const bodyParser = require("body-parser");
@@ -7,21 +10,14 @@ const express = require("express");
 //provides express middleware to enable cors with various options
 //cors: cross-origin resource sharing, meaning a protocol that enables scripts running on a browser client to interact with ressources from different origin
 const cors = require("cors");
-
-require('dotenv').config();
-
-
-const app = express();
+let corsOptions = { 
+  origin: "http://localhost:8080",
+  optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions));
 
 const db = require("./app/models");
 db.sequelize.sync();
-
-let corsOptions = { 
-    origin: "http://localhost:8080",
-    optionsSuccessStatus: 200
-}
-
-app.use(cors(corsOptions));
 
 //app.use(bodyParser.json()); deprectated. now use this: (body parsing has become builtin with express)
 app.use(express.json());
@@ -34,16 +30,13 @@ app.get("/", (req, res) => {
     });
 });
 
-const animeFunctions = require("./app/controllers/anime.controller");
-
-const Anime = db.anime;
-
 app.get("/animes", (req, res) => {
   anime.findAll().then((anime) => {
     res.json(anime);
-	  //res.send(post)
   })
 }); 
+
+const Anime = db.anime;
 
 app.post("/animes", (req, res) => {
   const newAnime = new Anime({
@@ -65,14 +58,6 @@ app.post("/animes", (req, res) => {
   })
   newAnime.save();
 });
-
- /* app.post("/animes", (req, res) => {
-  anime.create().then((anime) => {
-    res.json(anime);
-  })
-}); */
- 
-//app.post("/animes", animeFunctions.create);
 
 //listen for request, setting the port
 const PORT = process.env.PORT || 8081;
