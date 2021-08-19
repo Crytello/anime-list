@@ -27,7 +27,7 @@
       </a>
 
       <a class="navbar-item">
-        Genres
+        <router-link to="/genres">Genres</router-link>
       </a>
 
       <!-- <div class="navbar-item has-dropdown is-hoverable">

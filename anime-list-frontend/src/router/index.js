@@ -1,6 +1,7 @@
 import * as VueRouter from 'vue-router'
 import AnimeDashboard from '../components/AnimeDashboard.vue'
 import AnimeList from '../components/AnimeList.vue'
+import GenreList from '../components/GenreList.vue'
 
 const routes = [
   { 
@@ -12,6 +13,11 @@ const routes = [
     path: '/animes',
     name: 'AnimeList', 
     component: AnimeList, 
+  },
+  { 
+    path: '/genres',
+    name: 'Genres', 
+    component: GenreList, 
   },
 ]
   
