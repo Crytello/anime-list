@@ -15,11 +15,11 @@
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item">
-        <router-link to="/dashboard">Home</router-link>
+        <router-link to="/">Home</router-link>
       </a>
 
       <a class="navbar-item">
-        Animes A-Z
+        <router-link to="/animes">Animes A-Z</router-link>
       </a>
 
       <a class="navbar-item">

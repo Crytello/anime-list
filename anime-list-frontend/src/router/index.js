@@ -5,13 +5,13 @@ import AnimeList from '../components/AnimeList.vue'
 const routes = [
   { 
     path: '/', 
-    name: 'AnimeList',
-    component: AnimeList, 
+    name: 'AnimeDashboard',
+    component: AnimeDashboard, 
   },
   { 
-    path: '/dashboard',
-    name: 'AnimeDashboard', 
-    component: AnimeDashboard, 
+    path: '/animes',
+    name: 'AnimeList', 
+    component: AnimeList, 
   },
 ]
   
