@@ -1,15 +1,14 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <AnimeList />
+   <Header />
+  <router-view/>
 </template>
 
 <script>
-import AnimeList from './components/AnimeList.vue';
-
+import Header from "../src/components/layout/Header.vue"
 export default {
   name: 'App',
   components: {
-    AnimeList
+    Header
   }
 }
 </script>
