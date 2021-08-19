@@ -30,6 +30,8 @@ app.get("/", (req, res) => {
     });
 });
 
+//animes
+
 app.get("/animes", (req, res) => {
   anime.findAll().then((anime) => {
     res.json(anime);
@@ -59,13 +61,30 @@ app.post("/animes", (req, res) => {
   newAnime.save();
 });
 
+//genres
+
+app.get("/genres", (req, res) => {
+  genre.findAll().then((genre) => {
+    res.json(genre);
+  })
+}); 
+
+const Genre = db.genre;
+
+app.post("/genres", (req, res) => {
+  const newGenre = new Genre({
+    title: req.body.title,
+  })
+  newGenre.save();
+});
+
 //listen for request, setting the port
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-const { anime } = require("./app/models");
+const { anime, genre } = require("./app/models");
 db.sequelize.sync();
 
 
