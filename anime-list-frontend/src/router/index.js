@@ -2,6 +2,7 @@ import * as VueRouter from 'vue-router'
 import AnimeDashboard from '../components/AnimeDashboard.vue'
 import AnimeList from '../components/AnimeList.vue'
 import GenreList from '../components/GenreList.vue'
+import Register from '../components/auth/Register.vue'
 
 const routes = [
   { 
@@ -18,6 +19,11 @@ const routes = [
     path: '/genres',
     name: 'Genres', 
     component: GenreList, 
+  },
+  { 
+    path: '/register',
+    name: 'Register', 
+    component: Register, 
   },
 ]
   

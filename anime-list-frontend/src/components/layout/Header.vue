@@ -59,9 +59,11 @@
       </div>
       <div class="navbar-item">
         <div class="buttons">
-          <a class="button is-primary">
-            <strong>Registrieren</strong>
-          </a>
+          <router-link to="/register">
+            <a class="button is-primary">
+              <strong>Registrieren</strong>
+            </a>
+          </router-link>
           <a class="button is-light">
             Einloggen
           </a>
