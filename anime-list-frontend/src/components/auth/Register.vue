@@ -1,4 +1,9 @@
 <template>
+<div class="panel is-primary">
+  <p class="panel-heading">
+        Registrieren
+  </p>
+</div>
 <div class="columns is-centered">
     <div class="column card is-half">
       <div class="card-content">

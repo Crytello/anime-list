@@ -4,22 +4,16 @@
       Genres
     </p>
     <div class="panel-block">
-      <p class="control has-icons-left">
-        <input class="input is-primary" type="text" placeholder="Suche">
-        <span class="icon is-left">
-          <i class="fas fa-search" aria-hidden="true"></i>
-        </span>
-      </p>
+      <input v-model="filter" class="input is-primary" type="text" placeholder="Suche">
     </div>
-    <a class="panel-block" v-for="genre in genres" v-bind:key="genre.title">
-      <span class="panel-icon">
-        <i class="fas fa-book" aria-hidden="true"></i>
-      </span>
+    <a class="panel-block" v-for="genre in filteredGenres" v-bind:key="genre.title">
+      <button class="button is-primary">Bearbeiten</button>
+      <button class="button is-primary">Löschen</button>
       {{genre.title}}
     </a>
   </div>
 
-  <button @click="openGenreModal()" type="submit">Genre hinzufügen</button>
+<button @click="openGenreModal()" class="button is-primary">Genre hinzufügen</button>
 
   <div class="modal" ref="genreModal">
     <div class="modal-background"></div>
@@ -37,6 +31,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+        filter:'',
         genres: [],
         genre: {
           title: "",
@@ -59,18 +54,28 @@ export default {
       try {
           await axios.post("http://localhost:8081/genres", this.genre)
           .then(function ( response ) {
-            //handle success
             console.log(response)
           }.bind(this));
       } catch (err) {
         console.log(err);
       }
+      window.location.reload()
     },
     openGenreModal() {
-      console.log(this.$refs.genreModal.classList.add('is-active'));
+      this.$refs.genreModal.classList.add('is-active');
     }
   },
     components: {
     },
+    computed: {
+      filteredGenres() {
+      return this.genres.filter(genre => {
+      const title = genre.title.toString().toLowerCase();
+      const searchTerm = this.filter.toLowerCase();
+
+      return title.includes(searchTerm);
+    });
+  }
+    }
 }</script>
 <style></style>
