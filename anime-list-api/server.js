@@ -23,6 +23,29 @@ db.sequelize.sync();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
+const swaggerOptions = {
+  swaggerDefinition: {
+    info: {
+      title: 'Anime-List API',
+      description: 'API Description for Anime-List',
+      contact: {
+        name: 'Test Name'
+      },
+      servers: ["http://localhost:8081"]
+    }
+  },
+  // ['.routes/*.js']
+  apis: ["server.js"]
+};
+
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+
+
 //simple route
 app.get("/", (req, res) => {
     res.json({ 
@@ -31,7 +54,15 @@ app.get("/", (req, res) => {
 });
 
 //animes
-
+/**
+ * @swagger
+ * /animes:
+ *  get:
+ *    summary: Use to request all animes
+ *    responses:
+ *      200:
+ *        description: collection of all stored animes
+ */
 app.get("/animes", (req, res) => {
   anime.findAll().then((anime) => {
     res.json(anime);
@@ -61,7 +92,15 @@ app.post("/animes", (req, res) => {
   newAnime.save();
 });
 
+//finde one
+
+//update
+
+//delete
+
 //genres
+
+const Genre = db.genre;
 
 app.get("/genres", (req, res) => {
   genre.findAll().then((genre) => {
@@ -69,7 +108,6 @@ app.get("/genres", (req, res) => {
   })
 }); 
 
-const Genre = db.genre;
 
 app.post("/genres", (req, res) => {
   const newGenre = new Genre({
@@ -78,6 +116,12 @@ app.post("/genres", (req, res) => {
   newGenre.save();
 });
 
+//update
+
+//delete
+
+//finde one
+
 //listen for request, setting the port
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => {
@@ -85,6 +129,7 @@ app.listen(PORT, () => {
 });
 
 const { anime, genre } = require("./app/models");
+const swaggerJSDoc = require('swagger-jsdoc');
 db.sequelize.sync();
 
 
