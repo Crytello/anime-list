@@ -20,9 +20,6 @@ let corsOptions = {
 }
 app.use(cors(corsOptions));
 
-const db = require("./app/models");
-db.sequelize.sync();
-
 //app.use(bodyParser.json()); deprectated. now use this: (body parsing has become builtin with express)
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
