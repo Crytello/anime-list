@@ -1,4 +1,4 @@
-const dbConfig = require("/../anime-list/anime-list-api/config/db.config.js");
+const dbConfig = require("../../config/db.config")
 
 const Sequelize = require("sequelize");
 
