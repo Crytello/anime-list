@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Anime = sequelize.define("anime", {
+    const Anime = sequelize.define('anime', {
       title_jp: {
         type: Sequelize.STRING
       },
