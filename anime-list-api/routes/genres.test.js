@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../../app');
+const app = require('../app');
 
 describe('Genre Endpoints', () => {
   it('should get all genres', async () => {

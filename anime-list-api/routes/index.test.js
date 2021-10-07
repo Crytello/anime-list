@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../../app');
+const app = require('../app');
 
 describe('Index Endpoints', () => {
   it('should get the index message', async () => {

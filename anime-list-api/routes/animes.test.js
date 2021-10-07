@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../../app');
+const app = require('../app');
 
 describe('Anime Endpoints', () => {
   it('should get all animes', async () => {
