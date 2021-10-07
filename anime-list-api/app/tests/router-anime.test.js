@@ -1,14 +1,15 @@
 const request = require('supertest');
 const app = require('../../app');
 
-fdescribe('Anime Endpoints', () => {
-  fit('should get all animes', async () => {
+describe('Anime Endpoints', () => {
+  it('should get all animes', async () => {
     const res = await request(app).get('/animes');
 
     expect(res).toBeDefined();
     expect(res.statusCode).toEqual(200);
-    //expect(res.text).toBe()
-    //expect(res.text).toHaveProperty('title_eng');
+    expect(res.body[0].id).toBeDefined();
+    expect(res.body[0].title_eng).toBeDefined();
+    expect(res.body[0].title_jp).toBeDefined();
   });
   xit('should create a new anime', async () => {
     const res = await request(app).post('/animes').send({
