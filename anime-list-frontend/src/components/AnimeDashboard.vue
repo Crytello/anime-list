@@ -1,33 +1,55 @@
 <template>
-<div class="columns">
-  <div class="card column" >
-    <div class="card-content">
-      <div class="media" v-for="anime in animes" v-bind:key="anime.title_jp">
+<div class="panel-block">
+      <input v-model="filter" class="input is-primary" type="text" placeholder="Suche">
+</div>
+<div class="card column anime-card-dashboard tile is-ancestor" v-for="anime in filteredAnimes" v-bind:key="anime.title_jp" >
+    <div class="card-content tile is-parent is-12" >
+      <div class="media tile is-child">
         <div class="media-left">
-          <figure class="image is-128x128">
-            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image">
-          </figure>
+          <p>
+            <img src="https://bulma.io/images/placeholders/128x128.png" alt="Placeholder image"  width="128" height="128">
+          </p>
         </div>
         <div class="media-content">
-          <p class="title is-4">{{anime.title_jp}}</p>
-          <p class="subtitle is-4">{{anime.title_eng}}</p>
           <div class="content">
-            Aktuelle Folge {{anime.current_episode_watched}} von {{anime.total_number_episodes}}
-            <br>
-            <time>{{anime.updatedAt}}</time>
+            <p class="title is-3">{{anime.title_jp}}</p>
+            <p class="subtitle is-4">{{anime.title_eng}}</p>
+            <p>
+              Aktuelle Folge {{anime.current_episode_watched}} von {{anime.total_number_episodes}} 
+            </p> 
+            <p>
+              Nächste Folge eintragen
+              <button>
+                <svg-icon type="mdi" :path="plus" :size="20"></svg-icon>
+              </button>
+            </p>
           </div>
         </div>
-      </div>
+        <div class="media-right">
+          <button><router-link to="/anime/edit/"><svg-icon type="mdi" :path="pen" :size="35"></svg-icon></router-link></button>
+        </div>
+        
+        <div class="card-footer">
+          <p class="card-footer-item">
+            <small><time> Zuletzt bearbeitet am: {{anime.updatedAt}} </time></small>
+          </p>
+        </div>
     </div>
   </div>
 </div>
 </template>
 <script>
 import axios from "axios";
+import SvgIcon from '@jamescoyle/vue-icon';
+import { mdiBorderColor, mdiPlus   } from '@mdi/js';
 export default {
   data() {
     return {
         animes: [],
+        anime: '',
+        filter:'',
+        pen: mdiBorderColor,
+        plus: mdiPlus ,
       
     }
   },
@@ -45,6 +67,27 @@ export default {
     },
   },
     components: {
+      SvgIcon
     },
+    computed: {
+      filteredAnimes() {
+      return this.animes.filter(anime => {
+      const title_eng = anime.title_eng.toString().toLowerCase();
+      const title_jp = anime.title_jp.toString().toLowerCase();
+      const searchTerm = this.filter.toLowerCase();
+
+      return title_eng.includes(searchTerm) || title_jp.includes(searchTerm);
+      });
+    } 
+    }
 }</script>
-<style></style>
+<style>
+.anime-card-dashboard {
+  margin-top: 10px;
+  display: block;
+}
+
+.is-ancestor {
+  display:block
+}
+</style>

@@ -23,6 +23,14 @@
       </a>
 
       <a class="navbar-item">
+        <router-link to="/mangas">Mangas A-Z</router-link>
+      </a>
+
+      <a class="navbar-item">
+        <router-link to="/kpop">K-POP A-Z</router-link>
+      </a>
+
+      <a class="navbar-item">
         Season Übersicht
       </a>
 

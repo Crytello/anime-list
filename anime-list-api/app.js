@@ -2,6 +2,7 @@
 require('dotenv').config();
 var indexRouter = require('./routes/index');
 var animeRouter = require('./routes/animes');
+var mangaRouter = require('./routes/mangas');
 var genreRouter = require('./routes/genres');
 
 //for building rest apis
@@ -21,7 +22,7 @@ let corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(indexRouter, animeRouter, genreRouter);
+app.use(indexRouter, animeRouter, genreRouter, mangaRouter);
 
 const swaggerOptions = {
   swaggerDefinition: {

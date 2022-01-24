@@ -1,39 +1,36 @@
 module.exports = (sequelize, Sequelize) => {
-    const Anime = sequelize.define('anime', {
+    const Manga = sequelize.define('manga', {
       title_jp: {
         type: Sequelize.STRING
       },
       title_eng: {
         type: Sequelize.STRING
       },
+      title_de: {
+        type: Sequelize.STRING
+      },
       status: {
         type: Sequelize.ENUM('Upcoming', 'Ongoing', 'Beendet')
       },
       end_date: {
-        type: Sequelize.DATEONLY
+        type: Sequelize.DATE
       },
-      studio: {
+      publisher: {
         type: Sequelize.STRING
       },
-      source: {
-        type: Sequelize.STRING
-      },
-      current_episode_downloaded: {
+      current_volume: {
         type: Sequelize.INTEGER
       },
-      current_episode_watched: {
-        type: Sequelize.INTEGER
-      },
-      total_number_episodes: {
+      total_number_volumes: {
         type: Sequelize.INTEGER
       },
       release_year: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       }, 
       rating: {
         type: Sequelize.INTEGER
       }
     });
   
-    return Anime;
+    return Manga;
   };

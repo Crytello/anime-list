@@ -7,6 +7,12 @@
     <input id="title_eng" v-model="anime.title_eng" />
     <label for="season">Staffel:</label>
     <input id="season" v-model="anime.season" />
+    <label for="status">Status:</label> 
+    <select v-model="anime.status" label="statusOptions">  
+      <option v-for="statusOption in statusOptions" :key="statusOption.value">
+        {{statusOption.title}}
+      </option>
+    </select>
     <label for="release_season">Season:</label>
     <input id="release_season" v-model="anime.release_season" />
     <label for="release_year">Jahr:</label>
@@ -30,6 +36,17 @@ import axios from "axios";
 export default {
   data() {
     return {
+      statusOptions: [
+          {
+            title: "Upcoming", value: "Upcoming"
+          },
+          {
+            title: "Ongoing", value: "Ongoing"
+          },
+          {
+            title: "Beendet", value: "Beendet"
+          }
+        ],
         animes: [],
         anime: {
           title_jp: "",
