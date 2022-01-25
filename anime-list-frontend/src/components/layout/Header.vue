@@ -31,11 +31,11 @@
       </a>
 
       <a class="navbar-item">
-        Season Übersicht
+        <router-link to="/genres">Genres</router-link>
       </a>
 
       <a class="navbar-item">
-        <router-link to="/genres">Genres</router-link>
+        <router-link to="/seasons">Seasons</router-link>
       </a>
 
       <!-- <div class="navbar-item has-dropdown is-hoverable">

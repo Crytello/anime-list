@@ -5,6 +5,7 @@ import MangaList from '../components/MangaComponent/MangaList.vue';
 //import KPopList from '../components/KPopList.vue';
 import GenreList from '../components/GenreList.vue';
 import GenreEdit from '../components/GenreEdit.vue';
+import SeasonList from '../components/SeasonComponent/SeasonList.vue';
 import Register from '../components/auth/Register.vue';
 import AnimeEditView from '../components/AnimeEditView.vue';
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/genres',
     name: 'Genres', 
     component: GenreList, 
+  },
+  { 
+    path: '/seasons',
+    name: 'Seasons', 
+    component: SeasonList, 
   },
   { 
     path: '/genre/edit',

@@ -5,8 +5,20 @@
     <input id="title_jp" v-model="anime.title_jp" />
     <label for="title_eng">Englischer Titel:</label>
     <input id="title_eng" v-model="anime.title_eng" />
+    <label for="studio">Studio:</label>
+    <input id="studio" v-model="anime.studio" />
+    <label for="source">Quelle:</label>
+    <input id="source" v-model="anime.source" />
+    <label for="current_episode_downloaded">Aktuelle Folge gedownloaded:</label>
+    <input id="current_episode_downloaded" v-model="anime.current_episode_downloaded" />
+    <label for="current_episode_watched">Aktuelle Folge geguckt:</label>
+    <input id="current_episode_watched" v-model="anime.current_episode_watched" />
+    <label for="total_number_episodes">Gesamtanzahl Folgen:</label>
+    <input id="total_number_episodes" v-model="anime.total_number_episodes" />
     <label for="season">Staffel:</label>
     <input id="season" v-model="anime.season" />
+    <label for="end_date">Enddatum:</label>
+    <input id="end_date" v-model="anime.end_date" />
     <label for="status">Status:</label> 
     <select v-model="anime.status" label="statusOptions">  
       <option v-for="statusOption in statusOptions" :key="statusOption.value">
@@ -17,6 +29,8 @@
     <input id="release_season" v-model="anime.release_season" />
     <label for="release_year">Jahr:</label>
     <input id="release_year" v-model="anime.release_year" />
+    <label for="rating">Bewertung (1-10):</label>
+    <input id="rating" v-model="anime.rating" />
     <button @click="saveAnime()" type="submit">Anime hinzufügen</button>
 
 
