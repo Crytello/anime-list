@@ -22,13 +22,19 @@ db.anime = require('./anime.model.js')(sequelize, Sequelize);
 db.manga = require('./manga.model.js')(sequelize, Sequelize);
 db.genre = require('./genre.model.js')(sequelize, Sequelize);
 db.group = require('./group.model.js')(sequelize, Sequelize);
-db.releaseSeason = require('./release-season.model.js')(sequelize, Sequelize);
+db.season = require('./season.model.js')(sequelize, Sequelize);
 
 db.anime.belongsToMany(db.genre, {
     through: 'anime_genre',
     as: 'genres',
     foreignKey: 'anime_id',
-  });
+});
+
+db.anime.belongsToMany(db.season, {
+  through: 'anime_season',
+  as: 'seasons',
+  foreignKey: 'anime_id',
+});
 
 db.manga.belongsToMany(db.genre, {
   through: 'manga_genre',
@@ -48,12 +54,6 @@ db.genre.belongsToMany(db.manga, {
   foreignKey: 'genre_id',
 });
 
-db.releaseSeason.hasMany(db.anime, { as: 'animes' });
-db.anime.belongsTo(db.releaseSeason, {
-  foreignKey: 'release_season_id',
-  as: 'release_season',
-});
-
 db.group.hasMany(db.anime, { as: 'animes' });
 db.anime.belongsTo(db.group, {
   foreignKey: 'group_id',
@@ -64,6 +64,12 @@ db.group.hasMany(db.manga, { as: 'mangas' });
 db.manga.belongsTo(db.group, {
   foreignKey: 'group_id',
   as: 'group',
+});
+
+db.season.belongsToMany(db.anime, {
+  through: 'anime_season',
+  as: 'animes',
+  foreignKey: 'season_id',
 });
 
 module.exports = db;

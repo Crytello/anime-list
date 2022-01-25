@@ -30,7 +30,7 @@ router.get('/genres', (req, res) => {
  */
 
  router.post('/genres', (req, res) => {
-  const newGenre = new Genre({
+  const newGenre = new genre({
     title: req.body.title,
   })
   newGenre.save();

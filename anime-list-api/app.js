@@ -4,6 +4,7 @@ var indexRouter = require('./routes/index');
 var animeRouter = require('./routes/animes');
 var mangaRouter = require('./routes/mangas');
 var genreRouter = require('./routes/genres');
+var seasonRouter = require('./routes/seasons');
 
 //for building rest apis
 const express = require('express');
@@ -22,7 +23,7 @@ let corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(indexRouter, animeRouter, genreRouter, mangaRouter);
+app.use(indexRouter, animeRouter, genreRouter, mangaRouter, seasonRouter);
 
 const swaggerOptions = {
   swaggerDefinition: {
