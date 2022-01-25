@@ -41,7 +41,6 @@ router.post('/mangas', (req, res) => {
       total_number_volumes: req.body.total_number_volumes, 
       release_year: req.body.release_year, 
       rating: req.body.rating,  
-      groupId: req.body.groupId, 
       group_id: req.body.group_id
     })
     newManga.save();
@@ -79,7 +78,6 @@ router.put('/manga/:mangaId', (req, res) => {
         total_number_volumes: req.body.total_number_volumes, 
         release_year: req.body.release_year, 
         rating: req.body.rating,  
-        groupId: req.body.groupId, 
         group_id: req.body.group_id
       })
       .then(() => res.status(200).send(manga))

@@ -1,4 +1,7 @@
 <template>
+  <div class="panel-block">
+    <input v-model="filter" class="input is-primary" type="text" placeholder="Suche">
+  </div>
   <table class="table">
     <thead>
       <tr>
@@ -16,7 +19,7 @@
         <th scope="col">Bewertung / Rating</th>
       </tr>
     </thead>
-    <tbody v-for="manga in mangas" v-bind:key="manga.title_jp">
+    <tbody v-for="manga in filteredMangas" v-bind:key="manga.title_jp">
       <tr>
         <td><button class="button"  @click="deleteManga(manga)">Löschen</button></td>
         <td><button class="button" @click="updateManga(manga)">Bearbeiten</button></td>
@@ -36,7 +39,24 @@
 </template>
 
 <script>
-export default({
+export default{
   props: ['mangas', 'deleteManga', 'updateManga'],
-})
+  data() {
+    return {
+        filter:'',
+    }
+  },
+  computed : {
+  filteredMangas() {
+    return this.mangas.filter(manga => {
+    const title_jp = manga.title_jp.toString().toLowerCase();
+    const title_eng = manga.title_eng.toString().toLowerCase();
+    const title_de = manga.title_de.toString().toLowerCase();
+    const searchTerm = this.filter.toLowerCase();
+
+    return title_jp.includes(searchTerm) || title_eng.includes(searchTerm) || title_de.includes(searchTerm);
+  });
+},
+  }
+}
 </script>

@@ -1,38 +1,35 @@
 <template>
-    <h3>MangaList</h3>
-    Neuen Manga hinzufügen:
-    <label for="title_jp">Japanischer Titel:</label>
-    <input id="title_jp" v-model="manga.title_jp" />
-    <label for="title_eng">Englischer Titel:</label>
-    <input id="title_eng" v-model="manga.title_eng" />
-    <label for="title_de">Deutscher Titel:</label>
-    <input id="title_de" v-model="manga.title_de" />
-    <label for="publisher">Verlag:</label>
-    <input id="publisher" v-model="manga.publisher" />
-    <label for="current_volume">Aktueller Band:</label>
-    <input id="current_volume" v-model="manga.current_volume" />
-    <label for="status">Status:</label> 
-    <select v-model="manga.status" label="statusOptions">  
-      <option v-for="statusOption in statusOptions" :key="statusOption.value">
-        {{statusOption.title}}
-      </option>
-    </select>
-    <label for="total_number_volumes">Gesamzanzahl Bände:</label>
-    <input id="total_number_volumes" v-model="manga.total_number_volumes" />
-    <label for="release_year">Jahr:</label>
-    <input id="release_year" v-model="manga.release_year" />
-    <button @click="saveManga()" type="submit">Manga hinzufügen</button>
-
-
-    <form @submit.prevent>
-        <MangaListTableView :mangas='mangas' 
+  <form @submit.prevent>
+    <MangaListTableView :mangas='mangas' 
                             :deleteManga='deleteManga' 
                             :updateManga='updateManga'/>
-
-    
-
-    
   </form>
+
+  <h3>MangaList</h3>
+  Neuen Manga hinzufügen:
+  <label for="title_jp">Japanischer Titel:</label>
+  <input id="title_jp" v-model="manga.title_jp" />
+  <label for="title_eng">Englischer Titel:</label>
+  <input id="title_eng" v-model="manga.title_eng" />
+  <label for="title_de">Deutscher Titel:</label>
+  <input id="title_de" v-model="manga.title_de" />
+  <label for="publisher">Verlag:</label>
+  <input id="publisher" v-model="manga.publisher" />
+  <label for="current_volume">Aktueller Band:</label>
+  <input id="current_volume" v-model="manga.current_volume" />
+  <label for="status">Status:</label> 
+  <select v-model="manga.status" label="statusOptions">  
+    <option v-for="statusOption in statusOptions" :key="statusOption.value">
+      {{statusOption.title}}
+    </option>
+  </select>
+  <label for="total_number_volumes">Gesamzanzahl Bände:</label>
+  <input id="total_number_volumes" v-model="manga.total_number_volumes" />
+  <label for="release_year">Jahr:</label>
+  <input id="release_year" v-model="manga.release_year" />
+  <label for="rating">Bewertung von 1-10:</label>
+  <input id="rating" v-model="manga.rating" />
+  <button @click="saveManga()" type="submit">Manga hinzufügen</button>
 </template>
 <script>
 import MangaListTableView from '@/components/MangaComponent/MangaListTableView.vue';
