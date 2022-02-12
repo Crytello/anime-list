@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../app/models'); 
-const anime = models.anime;     
+const anime = models.anime;    
 
 /**
  * @swagger
@@ -33,6 +33,7 @@ router.post('/animes', (req, res) => {
     const newAnime = new anime({
       title_jp: req.body.title_jp,
       title_eng: req.body.title_eng, 
+      title_ger: req.body.title_ger, 
       status: req.body.status, 
       end_date: req.body.end_date, 
       studio: req.body.studio, 
@@ -46,6 +47,10 @@ router.post('/animes', (req, res) => {
       season_id: req.body.season_id
     })
     newAnime.save();
+  });
+
+  router.post('/anime/:animeId/image-upload', (req, res) => {
+    //Todo: add image upload linked with specific anime
   });
 
   router.get('/anime/:animeId', (req, res) => {
@@ -70,7 +75,7 @@ router.put('/anime/:animeId', (req, res) => {
         });
       }
       return anime.update({
-        title_jp: req.body.title_jp,
+        title_jp: req.params.anime.title_jp,
         title_eng: req.body.title_eng, 
         status: req.body.status, 
         end_date: req.body.end_date, 
@@ -106,4 +111,5 @@ router.delete('/anime/:animeId', (req, res) => {
 });
 
 module.exports = router;
+
   

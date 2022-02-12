@@ -50,7 +50,7 @@ export default {
         filter:'',
         pen: mdiBorderColor,
         plus: mdiPlus ,
-      
+        title_eng: '',
     }
   },
   created () {

@@ -11,10 +11,12 @@
   <input id="title_jp" v-model="manga.title_jp" />
   <label for="title_eng">Englischer Titel:</label>
   <input id="title_eng" v-model="manga.title_eng" />
-  <label for="title_de">Deutscher Titel:</label>
-  <input id="title_de" v-model="manga.title_de" />
+  <label for="title_ger">Deutscher Titel:</label>
+  <input id="title_ger" v-model="manga.title_ger" />
   <label for="publisher">Verlag:</label>
   <input id="publisher" v-model="manga.publisher" />
+  <label for="end_date">Enddatum:</label>
+  <input id="end_date" v-model="manga.end_date" />
   <label for="current_volume">Aktueller Band:</label>
   <input id="current_volume" v-model="manga.current_volume" />
   <label for="status">Status:</label> 
@@ -29,7 +31,8 @@
   <input id="release_year" v-model="manga.release_year" />
   <label for="rating">Bewertung von 1-10:</label>
   <input id="rating" v-model="manga.rating" />
-  <button @click="saveManga()" type="submit">Manga hinzufügen</button>
+  <input type="file" class="form-control-file" name="manga-image">
+  <button @click="saveManga()" type="submit">Manga hinzufügen</button> 
 </template>
 <script>
 import MangaListTableView from '@/components/MangaComponent/MangaListTableView.vue';
@@ -75,7 +78,6 @@ export default {
         console.log(this.manga)
           await axios.post("http://localhost:8081/mangas", this.manga)
           .then(function ( response ) {
-            //handle success
             console.log(response)
           }.bind(this));
       } catch (err) {
@@ -83,10 +85,10 @@ export default {
       }
     },
     deleteManga(manga) {
-        this.mangas.splice(this.mangas.indexOf(manga), 1);
+      this.mangas.splice(this.mangas.indexOf(manga), 1);
     },
     updateManga(manga) {
-        this.mangas.splice(this.mangas.indexOf(manga), manga)
+      this.mangas.splice(this.mangas.indexOf(manga), manga)
     }
   },
     components: {

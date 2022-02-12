@@ -9,7 +9,7 @@
         <th scope="col">Bearbeiten</th>
         <th scope="col">Japanischer Titel / title_jp</th>
         <th scope="col">Englischer Titel / title_eng</th>
-        <th scope="col">Deutscher Titel / title_de</th>
+        <th scope="col">Deutscher Titel / title_ger</th>
         <th scope="col">status</th>
         <th scope="col">Enddatum</th>
         <th scope="col">Verlag</th>
@@ -25,7 +25,7 @@
         <td><button class="button" @click="updateManga(manga)">Bearbeiten</button></td>
         <td>{{manga.title_jp}}</td>
         <td>{{manga.title_eng}}</td>
-        <td>{{manga.title_de}}</td>
+        <td>{{manga.title_ger}}</td>
         <td>{{manga.status}}</td>
         <td>{{manga.end_date}}</td>
         <td>{{manga.publisher}}</td>
@@ -51,10 +51,10 @@ export default{
     return this.mangas.filter(manga => {
     const title_jp = manga.title_jp.toString().toLowerCase();
     const title_eng = manga.title_eng.toString().toLowerCase();
-    const title_de = manga.title_de.toString().toLowerCase();
+    const title_ger = manga.title_ger.toString().toLowerCase();
     const searchTerm = this.filter.toLowerCase();
 
-    return title_jp.includes(searchTerm) || title_eng.includes(searchTerm) || title_de.includes(searchTerm);
+    return title_jp.includes(searchTerm) || title_eng.includes(searchTerm) || title_ger.includes(searchTerm);
   });
 },
   }

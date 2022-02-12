@@ -1,14 +1,17 @@
-
 require('dotenv').config();
+
 var indexRouter = require('./routes/index');
 var animeRouter = require('./routes/animes');
 var mangaRouter = require('./routes/mangas');
+var imageRouter = require('./routes/images');
 var genreRouter = require('./routes/genres');
 var seasonRouter = require('./routes/seasons');
 
-//for building rest apis
 const express = require('express');
 const app = express();
+
+const fileUpload = require('express-fileupload');
+app.use(fileUpload());
 
 //helps parse the request and create the req.body object
 // not required anymore: const bodyParser = require('body-parser');
@@ -23,7 +26,7 @@ let corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-app.use(indexRouter, animeRouter, genreRouter, mangaRouter, seasonRouter);
+app.use(indexRouter, animeRouter, genreRouter, mangaRouter, seasonRouter, imageRouter);
 
 const swaggerOptions = {
   swaggerDefinition: {

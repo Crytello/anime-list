@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
       title_eng: {
         type: Sequelize.STRING
       },
+      title_ger: {
+        type: Sequelize.STRING
+      },
       status: {
         type: Sequelize.ENUM('Upcoming', 'Ongoing', 'Beendet')
       },
@@ -32,6 +35,9 @@ module.exports = (sequelize, Sequelize) => {
       }, 
       rating: {
         type: Sequelize.INTEGER
+      },
+      image: {
+        type: Sequelize.STRING
       }
     });
   

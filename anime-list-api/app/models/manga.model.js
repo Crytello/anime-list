@@ -6,7 +6,7 @@ module.exports = (sequelize, Sequelize) => {
       title_eng: {
         type: Sequelize.STRING
       },
-      title_de: {
+      title_ger: {
         type: Sequelize.STRING
       },
       status: {
@@ -29,6 +29,9 @@ module.exports = (sequelize, Sequelize) => {
       }, 
       rating: {
         type: Sequelize.INTEGER
+      },
+      image: { 
+        type: Sequelize.STRING,
       }
     });
   

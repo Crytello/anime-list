@@ -33,7 +33,7 @@ router.post('/mangas', (req, res) => {
     const newManga = new manga({
       title_jp: req.body.title_jp,
       title_eng: req.body.title_eng,
-      title_de: req.body.title_de,  
+      title_ger: req.body.title_ger,  
       status: req.body.status, 
       end_date: req.body.end_date, 
       publisher: req.body.publisher, 
@@ -70,7 +70,7 @@ router.put('/manga/:mangaId', (req, res) => {
       return manga.update({
         title_jp: req.body.title_jp,
         title_eng: req.body.title_eng,
-        title_de: req.body.title_de,  
+        title_ger: req.body.title_ger,  
         status: req.body.status, 
         end_date: req.body.end_date, 
         publisher: req.body.publisher, 
