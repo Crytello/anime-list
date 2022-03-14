@@ -77,6 +77,7 @@ router.put('/anime/:animeId', (req, res) => {
       return anime.update({
         title_jp: req.params.anime.title_jp,
         title_eng: req.body.title_eng, 
+        title_ger: req.body.title_ger, 
         status: req.body.status, 
         end_date: req.body.end_date, 
         studio: req.body.studio, 
@@ -108,6 +109,25 @@ router.delete('/anime/:animeId', (req, res) => {
       .catch((error) => res.status(400).send(error));
     })
     .catch(error => res.status(400).send(error));
+});
+
+/**
+ * @swagger
+ * /animes/last-updated-episodes:
+ *  get:
+ *    summary: Use to request latest current updated anime-episodes
+ *    responses:
+ *      200:
+ *        description: collection of all stored animes
+ */ 
+
+ router.get('/animes/last-updated-episodes', (req, res) => {
+  anime.findAll({
+    limit: 8,
+    order: [ [ 'lastUpdatedAtCurrentEpisode', 'DESC' ]]
+  }).then((anime) => {
+      res.json(anime);
+  });
 });
 
 module.exports = router;

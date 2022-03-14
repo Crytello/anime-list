@@ -39,7 +39,7 @@
 </div>
 </template>
 <script>
-import axios from "axios";
+import axios from 'axios';
 import SvgIcon from '@jamescoyle/vue-icon';
 import { mdiBorderColor, mdiPlus   } from '@mdi/js';
 export default {
@@ -50,7 +50,6 @@ export default {
         filter:'',
         pen: mdiBorderColor,
         plus: mdiPlus ,
-        title_eng: '',
     }
   },
   created () {
@@ -59,7 +58,7 @@ export default {
   methods: {
     async getAllAnimes() {
       try {
-        const response = await axios.get("http://localhost:8081/animes/");
+        const response = await axios.get('http://localhost:8081/animes/last-updated-episodes/');
         this.animes = response.data;
       } catch (err) {
         console.log(err);
@@ -71,14 +70,23 @@ export default {
     },
     computed: {
       filteredAnimes() {
-      return this.animes.filter(anime => {
-      const title_eng = anime.title_eng.toString().toLowerCase();
-      const title_jp = anime.title_jp.toString().toLowerCase();
-      const searchTerm = this.filter.toLowerCase();
+        return this.animes.filter(anime => {
+          let title_eng = '';
+          let title_jp = '';
 
-      return title_eng.includes(searchTerm) || title_jp.includes(searchTerm);
-      });
-    } 
+          if(anime.title_eng){
+            title_eng = anime.title_eng.toString().toLowerCase();
+          }
+
+          if(anime.title_jp){
+            title_jp = anime.title_jp.toString().toLowerCase();
+          }
+          
+          const searchTerm = this.filter.toLowerCase();
+
+          return title_eng.includes(searchTerm) || title_jp.includes(searchTerm);
+        });
+      } 
     }
 }</script>
 <style>
