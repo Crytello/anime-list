@@ -1,5 +1,5 @@
 import * as VueRouter from 'vue-router';
-import AnimeDashboard from '../components/AnimeDashboard.vue';
+import Dashboard from '../components/DashboardComponent/Dashboard.vue';
 import AnimeList from '../components/AnimeList.vue';
 import MangaList from '../components/MangaComponent/MangaList.vue';
 //import KPopList from '../components/KPopList.vue';
@@ -12,8 +12,8 @@ import AnimeEditView from '../components/AnimeEditView.vue';
 const routes = [
   { 
     path: '/', 
-    name: 'AnimeDashboard',
-    component: AnimeDashboard, 
+    name: 'Dashboard',
+    component: Dashboard, 
   },
   { 
     path: '/animes',
@@ -51,9 +51,10 @@ const routes = [
     component: Register, 
   },
   { 
-    path: '/anime/edit:id',
+    path: '/anime/edit/:id',
     name: 'AnimeEditView', 
     component: AnimeEditView, 
+    props: true
   },
 ]
   

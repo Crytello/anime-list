@@ -113,18 +113,18 @@ router.delete('/anime/:animeId', (req, res) => {
 
 /**
  * @swagger
- * /animes/last-updated-episodes:
+ * /animes/last-updated-episode:
  *  get:
- *    summary: Use to request latest current updated anime-episodes
+ *    summary: Use to request latest current updated anime-episode
  *    responses:
  *      200:
- *        description: collection of all stored animes
+ *        description: collection of latest current updated anime-episode
  */ 
 
- router.get('/animes/last-updated-episodes', (req, res) => {
+router.get('/animes/last-updated-episode', (req, res) => {
   anime.findAll({
-    limit: 8,
-    order: [ [ 'lastUpdatedAtCurrentEpisode', 'DESC' ]]
+    limit: 1,
+    order: [ [ 'lastUpdatedAtCurrentEpisode', 'ASC' ]]
   }).then((anime) => {
       res.json(anime);
   });

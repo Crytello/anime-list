@@ -101,5 +101,24 @@ router.delete('/manga/:mangaId', (req, res) => {
     .catch(error => res.status(400).send(error));
 });
 
+/**
+ * @swagger
+ * /mangas/last-updated-episode:
+ *  get:
+ *    summary: Use to request latest current updated manga-episode
+ *    responses:
+ *      200:
+ *        description: collection of latest current updated manga-episode
+ */ 
+
+ router.get('/mangas/last-updated-episode', (req, res) => {
+  manga.findAll({
+    limit: 1,
+    order: [ [ 'lastUpdatedAtCurrentEpisode', 'ASC' ]]
+  }).then((manga) => {
+      res.json(manga);
+  });
+});
+
 module.exports = router;
   
