@@ -3,12 +3,17 @@
       <input v-model="filter" class="input is-primary" type="text" placeholder="Suche">
 </div>
 
+<h1 class="text-3xl font-bold underline">
+    Hello world!
+</h1>
+
 <AnimeDashboardCard :cardTitle='"LastUpdatedAnime"' :anime='lastUpdatedAnime'/>
 <MangaDashboardCard :cardTitle='"LastUpdatedManga"' :manga='lastUpdatedManga'/>
 
 </template>
 <script>
 import axios from 'axios';
+import i18next from 'i18next';
 import AnimeDashboardCard from '@/components/AnimeComponent/AnimeDashboardCard.vue';
 import MangaDashboardCard from '@/components/MangaComponent/MangaDashboardCard.vue';
 export default {
@@ -16,6 +21,7 @@ export default {
     return {
         lastUpdatedAnime: '',
         lastUpdatedManga: '',
+        defaultNS: 'dashboard',
         filter:'',
     }
   },
@@ -37,6 +43,7 @@ export default {
         const mangaEpisodeResponse = await axios.get('http://localhost:8081/mangas/last-updated-episode');
         this.lastUpdatedAnime = animeEpisodeResponse.data;
         this.lastUpdatedManga = mangaEpisodeResponse.data;
+        console.log(i18next.t('welcome'));
       } catch (err) {
         console.log(err);
       }

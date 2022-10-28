@@ -19,8 +19,8 @@
   </thead>
   <tbody v-for="anime in animes" v-bind:key="anime.title_jp">
     <tr>
-        <td><button @click="deleteAnime(anime)">Löschen</button></td>
-        <td><button @click="updateAnime(anime)">Bearbeiten</button></td>
+        <td><button class="button" @click="deleteAnime(anime)">Löschen</button></td>
+        <td><button class="button"><router-link :to="'/anime/edit/' + anime.id">Bearbeiten</router-link></button></td>
         <td><input v-model="anime.title_jp"/></td>
         <td><input v-model="anime.title_eng"/></td>
         <td><input v-model="anime.status"/></td>
