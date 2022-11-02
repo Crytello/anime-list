@@ -1,16 +1,16 @@
-const dbConfig = require('../../config/db.config')
+const dbConfig = require('../../config/db.config');
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-    host: dbConfig.HOST,
-    dialect: dbConfig.dialect,
-    pool: {
-      max: dbConfig.pool.max,
-      min: dbConfig.pool.min,
-      acquire: dbConfig.pool.acquire,
-      idle: dbConfig.pool.idle
-    }
-  });
+  host: dbConfig.HOST,
+  dialect: dbConfig.dialect,
+  pool: {
+    max: dbConfig.pool.max,
+    min: dbConfig.pool.min,
+    acquire: dbConfig.pool.acquire,
+    idle: dbConfig.pool.idle,
+  },
+});
 
 const db = {};
 
@@ -23,9 +23,9 @@ db.genre = require('./genre.model.js')(sequelize, Sequelize);
 db.season = require('./season.model.js')(sequelize, Sequelize);
 
 db.anime.belongsToMany(db.genre, {
-    through: 'anime_genre',
-    as: 'genres',
-    foreignKey: 'anime_id',
+  through: 'anime_genre',
+  as: 'genres',
+  foreignKey: 'anime_id',
 });
 
 db.genre.belongsToMany(db.anime, {
@@ -49,11 +49,11 @@ db.genre.belongsToMany(db.manga, {
 db.anime.belongsTo(db.season, {
   foreignKey: 'season_id',
   sourceKey: 'season_id',
-  as: 'seasons'
+  as: 'seasons',
 });
 db.season.hasMany(db.anime, {
   foreignKey: 'season_id',
-  as: 'animes'
+  as: 'animes',
 });
 
 module.exports = db;

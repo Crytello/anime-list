@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const models = require('../app/models'); 
+const models = require('../app/models');
 const seasonModel = require('../app/models/season.model');
-const anime = models.anime;    
+const anime = models.anime;
 
 /**
  * @swagger
@@ -12,13 +12,13 @@ const anime = models.anime;
  *    responses:
  *      200:
  *        description: collection of all stored animes
- */ 
+ */
 
 router.get('/animes', (req, res) => {
-    anime.findAll().then((anime) => {
-        res.json(anime);
-    });
-}); 
+  anime.findAll().then((anime) => {
+    res.json(anime);
+  });
+});
 
 /**
  * @swagger
@@ -31,30 +31,31 @@ router.get('/animes', (req, res) => {
  */
 
 router.post('/animes', (req, res) => {
-    const newAnime = new anime({
-      title_jp: req.body.title_jp,
-      title_eng: req.body.title_eng, 
-      title_ger: req.body.title_ger, 
-      status: req.body.status, 
-      end_date: req.body.end_date, 
-      studio: req.body.studio, 
-      source: req.body.source, 
-      current_episode_downloaded: req.body.current_episode_downloaded, 
-      current_episode_watched: req.body.current_episode_watched, 
-      total_number_episodes: req.body.total_number_episodes, 
-      release_year: req.body.release_year, 
-      rating: req.body.rating,  
-    })
-    newAnime.save();
+  const newAnime = new anime({
+    title_jp: req.body.title_jp,
+    title_eng: req.body.title_eng,
+    title_ger: req.body.title_ger,
+    status: req.body.status,
+    end_date: req.body.end_date,
+    studio: req.body.studio,
+    source: req.body.source,
+    current_episode_downloaded: req.body.current_episode_downloaded,
+    current_episode_watched: req.body.current_episode_watched,
+    total_number_episodes: req.body.total_number_episodes,
+    release_year: req.body.release_year,
+    rating: req.body.rating,
   });
+  newAnime.save();
+});
 
-  router.post('/anime/:animeId/image-upload', (req, res) => {
-    //Todo: add image upload linked with specific anime
-  });
+router.post('/anime/:animeId/image-upload', (req, res) => {
+  //Todo: add image upload linked with specific anime
+});
 
-  router.get('/anime/:animeId', (req, res) => {
-    anime.findByPk(req.params.animeId)
-    .then(anime => {
+router.get('/anime/:animeId', (req, res) => {
+  anime
+    .findByPk(req.params.animeId)
+    .then((anime) => {
       if (!anime) {
         return res.status(404).send({
           message: 'Anime Not Found',
@@ -62,50 +63,54 @@ router.post('/animes', (req, res) => {
       }
       return res.status(200).send(anime);
     })
-    .catch(error => res.status(400).send(error));
+    .catch((error) => res.status(400).send(error));
 });
 
 router.put('/anime/:animeId', (req, res) => {
-    anime.findByPk(req.params.animeId)
-    .then(anime => {
+  anime
+    .findByPk(req.params.animeId)
+    .then((anime) => {
       if (!anime) {
         return res.status(404).send({
           message: 'Anime Not Found',
         });
       }
-      return anime.update({
-        title_jp: req.params.anime.title_jp,
-        title_eng: req.body.title_eng, 
-        title_ger: req.body.title_ger, 
-        status: req.body.status, 
-        end_date: req.body.end_date, 
-        studio: req.body.studio, 
-        source: req.body.source, 
-        current_episode_downloaded: req.body.current_episode_downloaded, 
-        current_episode_watched: req.body.current_episode_watched, 
-        total_number_episodes: req.body.total_number_episodes, 
-        release_year: req.body.release_year, 
-        rating: req.body.rating,  
-      })
-      .then(() => res.status(200).send(anime))
-      .catch((error) => res.status(400).send(error));
+      return anime
+        .update({
+          title_jp: req.params.anime.title_jp,
+          title_eng: req.body.title_eng,
+          title_ger: req.body.title_ger,
+          status: req.body.status,
+          end_date: req.body.end_date,
+          studio: req.body.studio,
+          source: req.body.source,
+          current_episode_downloaded: req.body.current_episode_downloaded,
+          current_episode_watched: req.body.current_episode_watched,
+          total_number_episodes: req.body.total_number_episodes,
+          release_year: req.body.release_year,
+          rating: req.body.rating,
+        })
+        .then(() => res.status(200).send(anime))
+        .catch((error) => res.status(400).send(error));
     })
-    .catch(error => res.status(400).send(error));
+    .catch((error) => res.status(400).send(error));
 });
 
 router.delete('/anime/:animeId', (req, res) => {
-    anime.findByPk(req.params.animeId)
-    .then(anime => {
+  anime
+    .findByPk(req.params.animeId)
+    .then((anime) => {
       if (!anime) {
         return res.status(404).send({
           message: 'Anime Not Found',
         });
       }
-      return anime.destroy()
-      .then(() => res.status(204).send())
-      .catch((error) => res.status(400).send(error));
+      return anime
+        .destroy()
+        .then(() => res.status(204).send())
+        .catch((error) => res.status(400).send(error));
     })
-    .catch(error => res.status(400).send(error));
+    .catch((error) => res.status(400).send(error));
 });
 
 /**
@@ -116,17 +121,17 @@ router.delete('/anime/:animeId', (req, res) => {
  *    responses:
  *      200:
  *        description: collection of latest current updated anime-episode
- */ 
+ */
 
 router.get('/animes/last-updated-episode', (req, res) => {
-  anime.findAll({
-    limit: 1,
-    order: [ [ 'updatedAt', 'ASC' ]]
-  }).then((anime) => {
+  anime
+    .findAll({
+      limit: 1,
+      order: [['updatedAt', 'ASC']],
+    })
+    .then((anime) => {
       res.json(anime);
-  });
+    });
 });
 
 module.exports = router;
-
-  

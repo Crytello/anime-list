@@ -9,12 +9,13 @@ const router = express.Router();
  *    responses:
  *      200:
  *        description: working
- * 
+ *
  */
 
 router.get('/', (req, res) => {
-  res.json({ 
-    message: "Welcome to anime-list api. Seeing this message means it is working!" 
+  res.json({
+    message:
+      'Welcome to anime-list api. Seeing this message means it is working!',
   });
 });
 
