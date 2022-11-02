@@ -32,3 +32,7 @@ pnpm-debug.log*
 
 #jest-test-coverage-files
 /anime-list-api/coverage
+
+#api-specific
+/anime-list-api/images
+/anime-list-api/config/config.json
