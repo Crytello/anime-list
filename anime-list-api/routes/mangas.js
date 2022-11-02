@@ -41,7 +41,6 @@ router.post('/mangas', (req, res) => {
       total_number_volumes: req.body.total_number_volumes, 
       release_year: req.body.release_year, 
       rating: req.body.rating,  
-      group_id: req.body.group_id
     })
     newManga.save();
   });
@@ -77,8 +76,7 @@ router.put('/manga/:mangaId', (req, res) => {
         current_volume: req.body.current_volume, 
         total_number_volumes: req.body.total_number_volumes, 
         release_year: req.body.release_year, 
-        rating: req.body.rating,  
-        group_id: req.body.group_id
+        rating: req.body.rating,
       })
       .then(() => res.status(200).send(manga))
       .catch((error) => res.status(400).send(error));

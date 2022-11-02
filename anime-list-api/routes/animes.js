@@ -43,8 +43,6 @@ router.post('/animes', (req, res) => {
       total_number_episodes: req.body.total_number_episodes, 
       release_year: req.body.release_year, 
       rating: req.body.rating,  
-      group_id: req.body.group_id,
-      season_id: req.body.season_id
     })
     newAnime.save();
   });
@@ -87,8 +85,6 @@ router.put('/anime/:animeId', (req, res) => {
         total_number_episodes: req.body.total_number_episodes, 
         release_year: req.body.release_year, 
         rating: req.body.rating,  
-        group_id: req.body.group_id,
-        season_id: req.body.season_id
       })
       .then(() => res.status(200).send(anime))
       .catch((error) => res.status(400).send(error));

@@ -4,7 +4,6 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
     dialect: dbConfig.dialect,
-  
     pool: {
       max: dbConfig.pool.max,
       min: dbConfig.pool.min,
@@ -21,7 +20,6 @@ db.sequelize = sequelize;
 db.anime = require('./anime.model.js')(sequelize, Sequelize);
 db.manga = require('./manga.model.js')(sequelize, Sequelize);
 db.genre = require('./genre.model.js')(sequelize, Sequelize);
-db.group = require('./group.model.js')(sequelize, Sequelize);
 db.season = require('./season.model.js')(sequelize, Sequelize);
 
 db.anime.belongsToMany(db.genre, {
@@ -52,18 +50,6 @@ db.genre.belongsToMany(db.manga, {
   through: 'manga_genre',
   as: 'mangas',
   foreignKey: 'genre_id',
-});
-
-db.group.hasMany(db.anime, { as: 'animes' });
-db.anime.belongsTo(db.group, {
-  foreignKey: 'group_id',
-  as: 'group',
-});
-
-db.group.hasMany(db.manga, { as: 'mangas' });
-db.manga.belongsTo(db.group, {
-  foreignKey: 'group_id',
-  as: 'group',
 });
 
 db.season.belongsToMany(db.anime, {
