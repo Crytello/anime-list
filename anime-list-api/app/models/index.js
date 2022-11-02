@@ -28,10 +28,10 @@ db.anime.belongsToMany(db.genre, {
     foreignKey: 'anime_id',
 });
 
-db.anime.belongsToMany(db.season, {
-  through: 'anime_season',
-  as: 'seasons',
-  foreignKey: 'anime_id',
+db.genre.belongsToMany(db.anime, {
+  through: 'anime_genre',
+  as: 'animes',
+  foreignKey: 'genre_id',
 });
 
 db.manga.belongsToMany(db.genre, {
@@ -40,22 +40,20 @@ db.manga.belongsToMany(db.genre, {
   foreignKey: 'manga_id',
 });
 
-db.genre.belongsToMany(db.anime, {
-    through: 'anime_genre',
-    as: 'animes',
-    foreignKey: 'genre_id',
-});
-
 db.genre.belongsToMany(db.manga, {
   through: 'manga_genre',
   as: 'mangas',
   foreignKey: 'genre_id',
 });
 
-db.season.belongsToMany(db.anime, {
-  through: 'anime_season',
-  as: 'animes',
+db.anime.belongsTo(db.season, {
   foreignKey: 'season_id',
+  sourceKey: 'season_id',
+  as: 'seasons'
+});
+db.season.hasMany(db.anime, {
+  foreignKey: 'season_id',
+  as: 'animes'
 });
 
 module.exports = db;

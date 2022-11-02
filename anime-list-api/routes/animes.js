@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const models = require('../app/models'); 
+const seasonModel = require('../app/models/season.model');
 const anime = models.anime;    
 
 /**
@@ -17,7 +18,7 @@ router.get('/animes', (req, res) => {
     anime.findAll().then((anime) => {
         res.json(anime);
     });
-});
+}); 
 
 /**
  * @swagger
@@ -120,7 +121,7 @@ router.delete('/anime/:animeId', (req, res) => {
 router.get('/animes/last-updated-episode', (req, res) => {
   anime.findAll({
     limit: 1,
-    order: [ [ 'lastUpdatedAtCurrentEpisode', 'ASC' ]]
+    order: [ [ 'updatedAt', 'ASC' ]]
   }).then((anime) => {
       res.json(anime);
   });

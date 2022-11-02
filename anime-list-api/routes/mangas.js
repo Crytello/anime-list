@@ -112,7 +112,7 @@ router.delete('/manga/:mangaId', (req, res) => {
  router.get('/mangas/last-updated-episode', (req, res) => {
   manga.findAll({
     limit: 1,
-    order: [ [ 'lastUpdatedAtCurrentEpisode', 'ASC' ]]
+    order: [ [ 'updatedAt', 'ASC' ]]
   }).then((manga) => {
       res.json(manga);
   });
